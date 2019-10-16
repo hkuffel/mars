@@ -1,0 +1,1 @@
+Web application that assembles information about the planet Mars. Created as part of the Columbia Engineering Data Analytics Bootcamp.
