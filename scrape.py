@@ -45,8 +45,20 @@ def facts():
     mt = mt[197:-9].replace('\n', '')
     return mt
 
+def hemispheres():
+    hem_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(hem_url)
+    hemispheres = []
+    hem_names = ['Cerberus', 'Valles Marineris', 'Schiaparelli', 'Syrtis Major']
+    for hem in hem_names:
+        browser.click_link_by_partial_text(hem)
+        himg = browser.find_by_text('Sample').first
+        hemispheres.append({'title': f'{hem} Hemisphere', 'img_url': himg['href']})
+    return hemispheres
+
 def scrape():
     elems = {'title': news()[0], 'dek': news()[1],
     'featured_image': featured_image(),
-    'weather': weather(), 'facts': facts()}
+    'weather': weather(), 'facts': facts(), 
+    'hemispheres': hemispheres()}
     return elems
